@@ -38,13 +38,9 @@ Additionally, the platform integrates a Python-based natural language processing
 
 - Performance monitoring with Prometheus integration
 
-
 ## API Documentation
 
-```http
-  https://documenter.getpostman.com/view/36922283/2sAYdbNCoS
-```
-
+[Documentation](https://documenter.getpostman.com/view/36922283/2sAYdbNCoS)
 
 ## Installation
 
