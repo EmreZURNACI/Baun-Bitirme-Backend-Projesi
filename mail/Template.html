@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Şifre Değişikliği Kodu</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .header {
+        text-align: center;
+        padding-bottom: 20px;
+      }
+      .header h1 {
+        color: #333;
+      }
+      .code {
+        font-size: 30px;
+        font-weight: bold;
+        color: #1a73e8;
+        text-align: center;
+        padding: 20px;
+        border: 2px solid #1a73e8;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      .content {
+        font-size: 16px;
+        color: #333;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+      .footer {
+        text-align: center;
+        font-size: 14px;
+        color: #888;
+      }
+      .footer a {
+        color: #1a73e8;
+        text-decoration: none;
+      }
+      .text-center {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Şifre Değişikliği Talebi</h1>
+      </div>
+      <div class="content">
+        <p class="text-center">Merhaba,</p>
+        <p class="text-center">
+          Şifrenizi değiştirme talebinde bulundunuz. Aşağıdaki 6 haneli kodu
+          kullanarak şifrenizi değiştirebilirsiniz:
+        </p>
+        <div class="code">{{.Code}}</div>
+        <p class="text-center">
+          Bu kodu girmeyi unutmayın. Kodun geçerliliği 3 dakika ile sınırlıdır.
+          Eğer bu işlemi siz yapmadıysanız, lütfen bu e-postayı görmezden gelin.
+        </p>
+      </div>
+      <div class="footer">
+        <p class="text-center">
+          Şifre değişikliği talebinizi gerçekleştirmek için yukarıdaki kodu
+          kullanabilirsiniz.
+        </p>
+        <p>
+          Teşekkür ederiz, <br />
+          <strong>Baun Bitirme Ekibi</strong>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
