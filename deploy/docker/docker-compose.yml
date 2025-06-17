@@ -1,0 +1,80 @@
+version: '3'
+
+services:
+
+  server:
+    build:
+      context: ../../.
+      dockerfile: ./deploy/docker/Dockerfile 
+    container_name: bitirme_sunucu
+    ports:
+      - "8085:8085"
+    volumes:
+      - ../../images:/app/images
+    networks:
+      - bitirme
+    depends_on:
+      - postgresql
+
+  prometheus:
+    image: prom/prometheus
+    container_name: bitirme_prometheus
+    depends_on:
+      - server
+    networks:
+      - bitirme
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana-oss
+    container_name: bitirme_grafana
+    depends_on:
+      - prometheus
+    networks:
+      - bitirme
+    ports:
+      - "3000:3000"
+        #environment:
+        #- GF_SECURITY_ADMIN_USER=admin
+        #- GF_SECURITY_ADMIN_PASSWORD=baun.bitirme
+        #- GF_AUTH_BASIC_ENABLED=true
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      - ../grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+    restart: unless-stopped
+
+  
+  postgresql:
+    image: postgres
+    container_name: bitirme_veritabani
+    restart: always
+    ports:
+      - "5444:5432"
+    volumes:
+       - ../../database/backup/db.dump:/backup/db.dump
+       - ../../database/backup/restore.sh:/docker-entrypoint-initdb.d/restore.sh
+    environment:
+        POSTGRES_USER: emre
+        POSTGRES_PASSWORD: 123
+        POSTGRES_DB: bitirme
+    networks:
+      - bitirme
+  # ai:
+  #   image: ai:latest
+  #   container_name: Bitirme_yapayzeka
+  #   ports:
+  #    - "5000:5000"
+  #   networks:
+  #    - bitirme
+    
+
+volumes:
+  pgdata:
+  grafana-storage:
+
+networks:
+  bitirme:
+    driver: bridge
